@@ -1,0 +1,114 @@
+package smarthome;
+
+abstract class SmartDevice {
+ protected String deviceName;
+ protected boolean isOn;
+
+ public SmartDevice(String deviceName) {
+     this.deviceName = deviceName;
+     this.isOn = false;
+ }
+
+ public void turnOn() {
+     isOn = true;
+     System.out.println(deviceName + " is turned ON.");
+ }
+
+ public void turnOff() {
+     isOn = false;
+     System.out.println(deviceName + " is turned OFF.");
+ }
+
+ public abstract void showStatus();
+
+ @Override
+ protected void finalize() throws Throwable {
+     System.out.println(deviceName + " is being cleaned up.");
+ }
+}
+
+class SmartLight extends SmartDevice {
+ private int brightness;
+
+ public SmartLight(String deviceName) {
+     super(deviceName);
+     this.brightness = 50; 
+ }
+
+ public void setBrightness(int level) {
+     this.brightness = level;
+     System.out.println(deviceName + " brightness set to " + brightness + "%");
+ }
+
+ @Override
+ public void showStatus() {
+     System.out.println("Light [" + deviceName + "] - ON: " + isOn + ", Brightness: " + brightness + "%");
+ }
+}
+
+class SmartThermostat extends SmartDevice {
+ private double temperature;
+
+ public SmartThermostat(String deviceName) {
+     super(deviceName);
+     this.temperature = 24.0;
+ }
+
+ public void setTemperature(double temp) {
+     this.temperature = temp;
+     System.out.println(deviceName + " temperature set to " + temperature + "°C");
+ }
+
+ @Override
+ public void showStatus() {
+     System.out.println("Thermostat [" + deviceName + "] - ON: " + isOn + ", Temperature: " + temperature + "°C");
+ }
+}
+
+class SmartLock extends SmartDevice {
+ private boolean isLocked;
+
+ public SmartLock(String deviceName) {
+     super(deviceName);
+     this.isLocked = true;
+ }
+
+ public void unlock() {
+     isLocked = false;
+     System.out.println(deviceName + " is now UNLOCKED.");
+ }
+
+ public void lock() {
+     isLocked = true;
+     System.out.println(deviceName + " is now LOCKED.");
+ }
+
+ @Override
+ public void showStatus() {
+     System.out.println("Lock [" + deviceName + "] - ON: " + isOn + ", Locked: " + isLocked);
+ }
+}
+
+public class SmartHomeSimulation {
+ public static void main(String[] args) {
+     SmartDevice light = new SmartLight("Bedroom Light");
+     SmartDevice thermostat = new SmartThermostat("Living Room Thermostat");
+     SmartDevice lock = new SmartLock("Main Door Lock");
+
+     light.turnOn();
+     thermostat.turnOn();
+     lock.turnOn();
+
+     ((SmartLight) light).setBrightness(80);
+     ((SmartThermostat) thermostat).setTemperature(22.5);
+     ((SmartLock) lock).unlock();
+
+     light.showStatus();
+     thermostat.showStatus();
+     lock.showStatus();
+
+     light.turnOff();
+     thermostat.turnOff();
+     lock.turnOff();
+ }
+}
