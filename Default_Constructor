@@ -1,0 +1,18 @@
+class File
+{
+;    int a,b,c;
+    File()
+    {
+        System.out.println("This is a Constructor");
+        a = 10;
+        b = 20;
+        c = 30;
+        System.out.println("The Values are : " + a + " " + b + " " + c);
+    }
+}
+public class DefaultConstructor {
+    public static void main(String[] args) {
+        File obj = new File();
+
+    }
+}
