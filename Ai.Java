@@ -23,9 +23,9 @@ public class A {
     public static void main(String[] args) {
 
         Ai obj = new Ai();
-        obj.set("Aishwarya",8);
-        obj.set("Aishwarya","Cat");
-        obj.set(26);
+        obj.set("Kanmani",08);
+        obj.set("Kanmani","Cat");
+        obj.set(15);
 
     }
 }
