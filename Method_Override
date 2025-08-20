@@ -1,0 +1,23 @@
+class P {
+    public void get() {
+        System.out.println("This is a SuperClass");
+    }
+}
+
+    class Q extends P {
+
+        @Override
+
+        public void get() {
+            System.out.println("This is a Sub Class");
+        }
+    }
+
+
+    public class MethodOverride {
+        public static void main(String[] args) {
+            Q obj = new Q();
+            obj.get();
+
+        }
+    }
